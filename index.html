@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Assistant Trust Principles Assessment</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Serif+Pro:wght@400;600&display=swap');
+
+        
+
+        * {
+
+            box-sizing: border-box;
+
+            margin: 0;
+
+            padding: 0;
+
+            transition: all 0.3s ease;
+
+        }
+
+        
+
+        body {
+
+            font-family: 'Source Serif Pro', serif;
+
+            line-height: 1.6;
+
+            color: #333;
+
+            background-color: #f9f9f9;
+
+            padding: 20px;
+
+        }
+
+        
+
+        h1, h2, h3, h4, h5 {
+
+            font-family: 'Playfair Display', serif;
+
+            margin-bottom: 1rem;
+
+        }
+
+        
+
+        .container {
+
+            max-width: 1000px;
+
+            margin: 0 auto;
+
+            background-color: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+
+        }
+
+        
+
+        header {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+
+        }
+
+        
+
+        header h1 {
+
+            font-size: 2.5rem;
+
+            color: #2c3e50;
+
+        }
+
+        
+
+        header p {
+
+            font-size: 1.1rem;
+
+            color: #7f8c8d;
+
+        }
+
+        
+
+        .scenario-buttons {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 30px;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+        }
+
+        
+
+        .scenario-btn {
+
+            flex: 1;
+
+            min-width: 120px;
+
+            padding: 15px 10px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: 1rem;
+
+            font-weight: 600;
+
+            color: white;
+
+            cursor: pointer;
+
+            text-align: center;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+
+        }
+
+        
+
+        .scenario-btn:hover, .scenario-btn.active {
+
+            transform: scale(1.05);
+
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+
+        }
+
+        
+
+        .btn-healthcare {
+
+            background: linear-gradient(135deg, #3498db, #2980b9);
+
+        }
+
+        
+
+        .btn-education {
+
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+
+        }
+
+        
+
+        .btn-household {
+
+            background: linear-gradient(135deg, #e67e22, #f39c12);
+
+        }
+
+        
+
+        .btn-transportation {
+
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+
+        }
+
+        
+
+        .section {
+
+            margin-bottom: 30px;
+
+        }
+
+        
+
+        .section-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 1.5rem;
+
+            color: #2c3e50;
+
+            margin-bottom: 15px;
+
+        }
+
+        
+
+        .section-title i {
+
+            width: 30px;
+
+            text-align: center;
+
+        }
+
+        
+
+        .input-area {
+
+            margin-bottom: 20px;
+
+        }
+
+        
+
+        .input-container {
+
+            display: flex;
+
+            flex-direction: column;
+
+            margin-bottom: 20px;
+
+        }
+
+        
+
+        label {
+
+            margin-bottom: 8px;
+
+            font-weight: 600;
+
+            color: #34495e;
+
+        }
+
+        
+
+        textarea {
+
+            padding: 12px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 8px;
+
+            font-family: 'Source Serif Pro', serif;
+
+            font-size: 1rem;
+
+            resize: vertical;
+
+            min-height: 100px;
+
+        }
+
+        
+
+        .tags-input-container {
+
+            border: 1px solid #ddd;
+
+            padding: 10px;
+
+            border-radius: 8px;
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            min-height: 50px;
+
+            background-color: white;
+
+        }
+
+        
+
+        .tag {
+
+            background-color: #e1f0fa;
+
+            padding: 5px 10px;
+
+            border-radius: 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+        }
+
+        
+
+        .tag span {
+
+            font-size: 0.9rem;
+
+        }
+
+        
+
+        .tag i {
+
+            cursor: pointer;
+
+            font-size: 0.8rem;
+
+            color: #666;
+
+        }
+
+        
+
+        .tag i:hover {
+
+            color: #e74c3c;
+
+        }
+
+        
+
+        .tags-input {
+
+            flex: 1;
+
+            border: none;
+
+            outline: none;
+
+            padding: 5px;
+
+            font-family: 'Source Serif Pro', serif;
+
+            font-size: 1rem;
+
+            min-width: 100px;
+
+        }
+
+        
+
+        .btn {
+
+            padding: 12px 25px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background-color: #3498db;
+
+            color: white;
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: 1rem;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+        }
+
+        
+
+        .btn:hover {
+
+            background-color: #2980b9;
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+        }
+
+        
+
+        .btn:active {
+
+            transform: translateY(0);
+
+        }
+
+        
+
+        .results-section {
+
+            display: none;
+
+            opacity: 0;
+
+            transition: opacity 0.5s ease;
+
+        }
+
+        
+
+        .results-section.show {
+
+            display: block;
+
+            opacity: 1;
+
+        }
+
+        
+
+        .chart-container {
+
+            width: 100%;
+
+            max-width: 500px;
+
+            margin: 0 auto 30px;
+
+        }
+
+        
+
+        .results-details {
+
+            margin-top: 30px;
+
+        }
+
+        
+
+        .principle-result {
+
+            margin-bottom: 20px;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            background-color: #f8f9fa;
+
+        }
+
+        
+
+        .principle-title {
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: 1.2rem;
+
+            margin-bottom: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+        }
+
+        
+
+        .score-badge {
+
+            background-color: #3498db;
+
+            color: white;
+
+            padding: 3px 10px;
+
+            border-radius: 12px;
+
+            font-size: 0.9rem;
+
+        }
+
+        
+
+        .loading {
+
+            display: none;
+
+            text-align: center;
+
+            padding: 20px;
+
+        }
+
+        
+
+        .loading i {
+
+            font-size: 2rem;
+
+            color: #3498db;
+
+            animation: spin 2s linear infinite;
+
+        }
+
+        
+
+        @keyframes spin {
+
+            0% { transform: rotate(0deg); }
+
+            100% { transform: rotate(360deg); }
+
+        }
+
+        
+
+        @media (max-width: 768px) {
+
+            .scenario-buttons {
+
+                flex-direction: column;
+
+            }
+
+            
+
+            .scenario-btn {
+
+                width: 100%;
+
+                margin-bottom: 10px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+
+            <h1>AI Assistant Trust Principles Assessment</h1>
+
+            <p>Evaluate AI assistants based on key trust principles across different scenarios</p>
+
+        </header>
+
+        
+
+        <div class="section">
+
+            <div class="section-title">
+
+                <i class="fas fa-map-marker-alt"></i>
+
+                <h2>Select Scenario</h2>
+
+            </div>
+
+            <div class="scenario-buttons">
+
+                <button class="scenario-btn btn-healthcare active" data-scenario="healthcare">
+
+                    <i class="fas fa-heartbeat"></i> Healthcare
+
+                </button>
+
+                <button class="scenario-btn btn-education" data-scenario="education">
+
+                    <i class="fas fa-graduation-cap"></i> Education
+
+                </button>
+
+                <button class="scenario-btn btn-household" data-scenario="household">
+
+                    <i class="fas fa-home"></i> Household
+
+                </button>
+
+                <button class="scenario-btn btn-transportation" data-scenario="transportation">
+
+                    <i class="fas fa-car"></i> Transportation
+
+                </button>
+
+            </div>
+
+        </div>
+
+        
+
+        <div class="section">
+
+            <div class="section-title">
+
+                <i class="fas fa-robot"></i>
+
+                <h2>AI Assistant Characteristics</h2>
+
+            </div>
+
+            <div class="input-container">
+
+                <label for="characteristics-input">Enter characteristics as tags (press Enter after each)</label>
+
+                <div class="tags-input-container" id="characteristics-container">
+
+                    <input type="text" class="tags-input" id="characteristics-input" placeholder="e.g., intelligent, adaptive...">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        
+
+        <div class="section">
+
+            <div class="section-title">
+
+                <i class="fas fa-paint-brush"></i>
+
+                <h2>AI Assistant Appearance</h2>
+
+            </div>
+
+            <div class="input-container">
+
+                <label for="appearance-input">Enter appearance features as tags (press Enter after each)</label>
+
+                <div class="tags-input-container" id="appearance-container">
+
+                    <input type="text" class="tags-input" id="appearance-input" placeholder="e.g., humanoid, blue, modern...">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        
+
+        <div class="section">
+
+            <div class="section-title">
+
+                <i class="fas fa-comment-alt"></i>
+
+                <h2>Additional Information</h2>
+
+            </div>
+
+            <div class="input-container">
+
+                <label for="additional-info">Provide any additional information about the AI assistant</label>
+
+                <textarea id="additional-info" placeholder="Describe how this AI assistant would be used in the selected scenario..."></textarea>
+
+            </div>
+
+        </div>
+
+        
+
+        <div class="input-area">
+
+            <button class="btn" id="evaluate-btn">Evaluate Trust Principles</button>
+
+        </div>
+
+        
+
+        <div class="loading" id="loading">
+
+            <i class="fas fa-spinner"></i>
+
+            <p>Analyzing AI assistant trust principles...</p>
+
+        </div>
+
+        
+
+        <div class="results-section" id="results-section">
+
+            <div class="section-title">
+
+                <i class="fas fa-chart-line"></i>
+
+                <h2>Assessment Results</h2>
+
+            </div>
+
+            
+
+            <div class="chart-container">
+
+                <canvas id="radar-chart"></canvas>
+
+            </div>
+
+            
+
+            <div class="results-details" id="results-details">
+
+                <!-- Results will be populated here -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        // Current scenario
+
+        let currentScenario = 'healthcare';
+
+        
+
+        // Tag input functionality
+
+        function setupTagsInput(inputId, containerId) {
+
+            const input = document.getElementById(inputId);
+
+            const container = document.getElementById(containerId);
+
+            
+
+            input.addEventListener('keydown', function(e) {
+
+                if (e.key === 'Enter' && input.value.trim() !== '') {
+
+                    e.preventDefault();
+
+                    
+
+                    const tag = document.createElement('div');
+
+                    tag.className = 'tag';
+
+                    
+
+                    const tagText = document.createElement('span');
+
+                    tagText.textContent = input.value.trim();
+
+                    
+
+                    const closeBtn = document.createElement('i');
+
+                    closeBtn.className = 'fas fa-times';
+
+                    closeBtn.addEventListener('click', function() {
+
+                        container.removeChild(tag);
+
+                    });
+
+                    
+
+                    tag.appendChild(tagText);
+
+                    tag.appendChild(closeBtn);
+
+                    
+
+                    container.insertBefore(tag, input);
+
+                    input.value = '';
+
+                }
+
+            });
+
+        }
+
+        
+
+        // Set up tag inputs
+
+        setupTagsInput('characteristics-input', 'characteristics-container');
+
+        setupTagsInput('appearance-input', 'appearance-container');
+
+        
+
+        // Scenario buttons functionality
+
+        const scenarioButtons = document.querySelectorAll('.scenario-btn');
+
+        scenarioButtons.forEach(button => {
+
+            button.addEventListener('click', function() {
+
+                scenarioButtons.forEach(btn => btn.classList.remove('active'));
+
+                this.classList.add('active');
+
+                currentScenario = this.dataset.scenario;
+
+            });
+
+        });
+
+        
+
+        // Collect tags from container
+
+        function getTagsFromContainer(containerId) {
+
+            const container = document.getElementById(containerId);
+
+            const tagElements = container.querySelectorAll('.tag span');
+
+            return Array.from(tagElements).map(tag => tag.textContent);
+
+        }
+
+        
+
+        // Radar chart initialization
+
+        let radarChart = null;
+
+        
+
+        function initializeRadarChart(data) {
+
+            const ctx = document.getElementById('radar-chart').getContext('2d');
+
+            
+
+            // Destroy existing chart if it exists
+
+            if (radarChart) {
+
+                radarChart.destroy();
+
+            }
+
+            
+
+            // Create gradient colors
+
+            const gradient1 = ctx.createLinearGradient(0, 0, 0, 400);
+
+            gradient1.addColorStop(0, 'rgba(52, 152, 219, 0.8)');
+
+            gradient1.addColorStop(1, 'rgba(52, 152, 219, 0.2)');
+
+            
+
+            radarChart = new Chart(ctx, {
+
+                type: 'radar',
+
+                data: {
+
+                    labels: ['Transparency', 'Explainability', 'Fairness', 'Privacy', 'Stability'],
+
+                    datasets: [{
+
+                        label: 'Trust Score',
+
+                        data: [0, 0, 0, 0, 0], // Initial zero values
+
+                        backgroundColor: gradient1,
+
+                        borderColor: 'rgba(52, 152, 219, 1)',
+
+                        borderWidth: 2,
+
+                        pointBackgroundColor: 'rgba(52, 152, 219, 1)',
+
+                        pointBorderColor: '#fff',
+
+                        pointHoverBackgroundColor: '#fff',
+
+                        pointHoverBorderColor: 'rgba(52, 152, 219, 1)'
+
+                    }]
+
+                },
+
+                options: {
+
+                    scales: {
+
+                        r: {
+
+                            beginAtZero: true,
+
+                            max: 10,
+
+                            ticks: {
+
+                                stepSize: 2
+
+                            }
+
+                        }
+
+                    },
+
+                    plugins: {
+
+                        legend: {
+
+                            display: false
+
+                        }
+
+                    },
+
+                    animation: {
+
+                        duration: 1500
+
+                    }
+
+                }
+
+            });
+
+            
+
+            // Animate the chart with the actual data
+
+            setTimeout(() => {
+
+                radarChart.data.datasets[0].data = data;
+
+                radarChart.update();
+
+            }, 500);
+
+        }
+
+        
+
+        // Generate the assessment results
+
+        function generateAssessment(characteristics, appearance, additionalInfo) {
+
+            // This is a simulated assessment logic that would typically be handled by an LLM
+
+            // For this demo, we'll use a simplified scoring algorithm
+
+            
+
+            const scenarioFactors = {
+
+                healthcare: {
+
+                    transparency: 1.2,
+
+                    explainability: 1.5,
+
+                    fairness: 1.3,
+
+                    privacy: 1.8,
+
+                    stability: 1.2
+
+                },
+
+                education: {
+
+                    transparency: 1.5,
+
+                    explainability: 1.7,
+
+                    fairness: 1.6,
+
+                    privacy: 1.2,
+
+                    stability: 1.3
+
+                },
+
+                household: {
+
+                    transparency: 1.1,
+
+                    explainability: 1.2,
+
+                    fairness: 1.0,
+
+                    privacy: 1.4,
+
+                    stability: 1.5
+
+                },
+
+                transportation: {
+
+                    transparency: 1.4,
+
+                    explainability: 1.1,
+
+                    fairness: 1.5,
+
+                    privacy: 1.3,
+
+                    stability: 1.7
+
+                }
+
+            };
+
+            
+
+            // Positive and negative characteristic keywords
+
+            const characteristicKeywords = {
+
+                transparency: {
+
+                    positive: ['transparent', 'open', 'honest', 'clear', 'visible', 'communicative'],
+
+                    negative: ['opaque', 'mysterious', 'hidden', 'secretive', 'black-box']
+
+                },
+
+                explainability: {
+
+                    positive: ['explanatory', 'articulate', 'educational', 'informative', 'detailed', 'thorough'],
+
+                    negative: ['vague', 'confusing', 'unclear', 'complex', 'abstract']
+
+                },
+
+                fairness: {
+
+                    positive: ['fair', 'unbiased', 'neutral', 'equitable', 'just', 'balanced', 'inclusive'],
+
+                    negative: ['biased', 'unfair', 'prejudiced', 'discriminatory', 'exclusive']
+
+                },
+
+                privacy: {
+
+                    positive: ['private', 'secure', 'confidential', 'discreet', 'protective'],
+
+                    negative: ['intrusive', 'invasive', 'monitoring', 'tracking', 'surveillance']
+
+                },
+
+                stability: {
+
+                    positive: ['stable', 'reliable', 'consistent', 'dependable', 'robust', 'predictable'],
+
+                    negative: ['unstable', 'unreliable', 'erratic', 'glitchy', 'buggy', 'unpredictable']
+
+                }
+
+            };
+
+            
+
+            // Appearance factors
+
+            const appearanceFactors = {
+
+                transparency: {
+
+                    positive: ['minimalist', 'clear', 'glass', 'transparent', 'simple', 'visible'],
+
+                    negative: ['complex', 'dark', 'hidden', 'obscured']
+
+                },
+
+                explainability: {
+
+                    positive: ['interface', 'screen', 'display', 'expressive', 'communicative'],
+
+                    negative: ['blank', 'expressionless', 'static']
+
+                },
+
+                fairness: {
+
+                    positive: ['neutral', 'balanced', 'universal', 'accessible'],
+
+                    negative: ['intimidating', 'authoritarian', 'exclusive']
+
+                },
+
+                privacy: {
+
+                    positive: ['discreet', 'minimal', 'subtle', 'simple'],
+
+                    negative: ['camera', 'lens', 'recording', 'watching', 'monitoring']
+
+                },
+
+                stability: {
+
+                    positive: ['solid', 'sturdy', 'balanced', 'grounded', 'robust'],
+
+                    negative: ['floating', 'unstable', 'fragile', 'delicate']
+
+                }
+
+            };
+
+            
+
+            // Calculate base scores
+
+            let scores = {
+
+                transparency: 5,
+
+                explainability: 5,
+
+                fairness: 5,
+
+                privacy: 5,
+
+                stability: 5
+
+            };
+
+            
+
+            // Adjust scores based on characteristics
+
+            characteristics.forEach(characteristic => {
+
+                const lowerChar = characteristic.toLowerCase();
+
+                
+
+                Object.keys(characteristicKeywords).forEach(principle => {
+
+                    if (characteristicKeywords[principle].positive.some(keyword => lowerChar.includes(keyword))) {
+
+                        scores[principle] += 1.5;
+
+                    }
+
+                    if (characteristicKeywords[principle].negative.some(keyword => lowerChar.includes(keyword))) {
+
+                        scores[principle] -= 1.5;
+
+                    }
+
+                });
+
+            });
+
+            
+
+            // Adjust scores based on appearance
+
+            appearance.forEach(feature => {
+
+                const lowerFeature = feature.toLowerCase();
+
+                
+
+                Object.keys(appearanceFactors).forEach(principle => {
+
+                    if (appearanceFactors[principle].positive.some(keyword => lowerFeature.includes(keyword))) {
+
+                        scores[principle] += 1;
+
+                    }
+
+                    if (appearanceFactors[principle].negative.some(keyword => lowerFeature.includes(keyword))) {
+
+                        scores[principle] -= 1;
+
+                    }
+
+                });
+
+            });
+
+            
+
+            // Consider additional info
+
+            if (additionalInfo) {
+
+                const lowerInfo = additionalInfo.toLowerCase();
+
+                
+
+                Object.keys(characteristicKeywords).forEach(principle => {
+
+                    characteristicKeywords[principle].positive.forEach(keyword => {
+
+                        if (lowerInfo.includes(keyword)) {
+
+                            scores[principle] += 0.5;
+
+                        }
+
+                    });
+
+                    
+
+                    characteristicKeywords[principle].negative.forEach(keyword => {
+
+                        if (lowerInfo.includes(keyword)) {
+
+                            scores[principle] -= 0.5;
+
+                        }
+
+                    });
+
+                });
+
+            }
+
+            
+
+            // Apply scenario factors
+
+            Object.keys(scores).forEach(principle => {
+
+                scores[principle] *= scenarioFactors[currentScenario][principle];
+
+                // Clamp scores between 1 and 10
+
+                scores[principle] = Math.max(1, Math.min(10, Math.round(scores[principle] * 10) / 10));
+
+            });
+
+            
+
+            return {
+
+                scores: scores,
+
+                feedback: generateFeedback(scores, currentScenario)
+
+            };
+
+        }
+
+        
+
+        // Generate feedback for each principle
+
+        function generateFeedback(scores, scenario) {
+
+            const feedback = {};
+
+            const scenarioContexts = {
+
+                healthcare: {
+
+                    transparency: "In healthcare, transparency is crucial for patients to understand diagnoses and treatment options.",
+
+                    explainability: "Medical AI must explain its reasoning for diagnostic and treatment recommendations.",
+
+                    fairness: "Healthcare AI must ensure equal quality of care across different demographics.",
+
+                    privacy: "Medical data is highly sensitive and requires strict privacy protections.",
+
+                    stability: "Healthcare systems must remain reliable and consistent in critical care scenarios."
+
+                },
+
+                education: {
+
+                    transparency: "Educational AI should be clear about learning objectives and assessment methods.",
+
+                    explainability: "Explanations of concepts and feedback on student work must be clear and instructive.",
+
+                    fairness: "Educational AI should provide equitable learning opportunities for students of all backgrounds.",
+
+                    privacy: "Student data privacy is important but must be balanced with personalized learning.",
+
+                    stability: "Educational tools need consistent performance for reliable learning experiences."
+
+                },
+
+                household: {
+
+                    transparency: "Home assistants should be transparent about their capabilities and limitations.",
+
+                    explainability: "Household AI should explain its decisions in simple, accessible language.",
+
+                    fairness: "Home assistants should serve all household members equally well.",
+
+                    privacy: "Privacy inside the home is paramount, especially regarding sensitive conversations.",
+
+                    stability: "Reliability is essential for home systems that users depend on daily."
+
+                },
+
+                transportation: {
+
+                    transparency: "Transportation AI should be transparent about routes, delays, and decision-making.",
+
+                    explainability: "Safety-critical decisions in transportation require clear explanations.",
+
+                    fairness: "Transportation services should be equally accessible and functional for all users.",
+
+                    privacy: "Location data and travel patterns require appropriate privacy safeguards.",
+
+                    stability: "Transportation systems must be highly stable and predictable for safety reasons."
+
+                }
+
+            };
+
+            
+
+            const principles = {
+
+                transparency: {
+
+                    icon: "fa-glass-water",
+
+                    high: "The AI assistant demonstrates excellent transparency, clearly showing how it processes information and makes decisions. Users can easily understand what the assistant is doing and why.",
+
+                    medium: "The AI shows moderate transparency. While some aspects of its operation are clear, others could be more visible to users.",
+
+                    low: "The AI lacks sufficient transparency. Users may struggle to understand how it works or makes decisions, potentially creating trust issues."
+
+                },
+
+                explainability: {
+
+                    icon: "fa-lightbulb",
+
+                    high: "The AI excels at explaining its reasoning and decisions in user-friendly terms. It provides clear rationales that help users understand and learn.",
+
+                    medium: "The AI provides adequate explanations but could improve in making complex concepts more accessible or providing more depth when needed.",
+
+                    low: "The AI struggles to explain its reasoning effectively. Its explanations may be too technical, too simplistic, or missing altogether."
+
+                },
+
+                fairness: {
+
+                    icon: "fa-balance-scale",
+
+                    high: "The AI demonstrates strong fairness principles, treating all users equitably and avoiding biases in its responses and recommendations.",
+
+                    medium: "The AI shows reasonable fairness but may have blind spots in certain areas that could lead to inconsistent treatment of different user groups.",
+
+                    low: "The AI shows concerning signs of bias or unfairness that could disadvantage certain users or perpetuate existing inequalities."
+
+                },
+
+                privacy: {
+
+                    icon: "fa-lock",
+
+                    high: "The AI prioritizes user privacy with strong data protection measures and transparent data practices. Users can feel confident their information is secure.",
+
+                    medium: "The AI has adequate privacy provisions but could improve in how it handles, stores, or explains its data practices to users.",
+
+                    low: "The AI has significant privacy concerns, potentially collecting more data than necessary or not being clear about how user data is used."
+
+                },
+
+                stability: {
+
+                    icon: "fa-cubes",
+
+                    high: "The AI demonstrates excellent stability and reliability, consistently performing as expected with minimal errors or downtime.",
+
+                    medium: "The AI is reasonably stable but may experience occasional inconsistencies or performance issues that affect user experience.",
+
+                    low: "The AI lacks sufficient stability, with frequent errors, inconsistent behavior, or unpredictable responses that undermine user trust."
+
+                }
+
+            };
+
+            
+
+            Object.keys(scores).forEach(principle => {
+
+                const score = scores[principle];
+
+                let assessment;
+
+                
+
+                if (score >= 7.5) {
+
+                    assessment = principles[principle].high;
+
+                } else if (score >= 5) {
+
+                    assessment = principles[principle].medium;
+
+                } else {
+
+                    assessment = principles[principle].low;
+
+                }
+
+                
+
+                feedback[principle] = {
+
+                    score: score,
+
+                    assessment: assessment,
+
+                    context: scenarioContexts[scenario][principle],
+
+                    icon: principles[principle].icon
+
+                };
+
+            });
+
+            
+
+            return feedback;
+
+        }
+
+        
+
+        // Evaluate button click handler
+
+        document.getElementById('evaluate-btn').addEventListener('click', function() {
+
+            const characteristics = getTagsFromContainer('characteristics-container');
+
+            const appearance = getTagsFromContainer('appearance-container');
+
+            const additionalInfo = document.getElementById('additional-info').value;
+
+            
+
+            // Show loading
+
+            document.getElementById('loading').style.display = 'block';
+
+            document.getElementById('results-section').classList.remove('show');
+
+            
+
+            // Simulate processing time
+
+            setTimeout(() => {
+
+                const assessment = generateAssessment(characteristics, appearance, additionalInfo);
+
+                
+
+                // Update chart
+
+                const scoreValues = Object.values(assessment.scores);
+
+                initializeRadarChart(scoreValues);
+
+                
+
+                // Update text results
+
+                const resultsDetails = document.getElementById('results-details');
+
+                resultsDetails.innerHTML = '';
+
+                
+
+                Object.keys(assessment.feedback).forEach(principle => {
+
+                    const feedback = assessment.feedback[principle];
+
+                    
+
+                    const resultElement = document.createElement('div');
+
+                    resultElement.className = 'principle-result';
+
+                    
+
+                    const titleElement = document.createElement('div');
+
+                    titleElement.className = 'principle-title';
+
+                    titleElement.innerHTML = `<i class="fas ${feedback.icon}"></i> ${principle.charAt(0).toUpperCase() + principle.slice(1)} <span class="score-badge">${feedback.score}/10</span>`;
+
+                    
+
+                    const assessmentElement = document.createElement('p');
+
+                    assessmentElement.textContent = feedback.assessment;
+
+                    
+
+                    const contextElement = document.createElement('p');
+
+                    contextElement.textContent = feedback.context;
+
+                    contextElement.style.fontStyle = 'italic';
+
+                    contextElement.style.color = '#666';
+
+                    contextElement.style.marginTop = '10px';
+
+                    
+
+                    resultElement.appendChild(titleElement);
+
+                    resultElement.appendChild(assessmentElement);
+
+                    resultElement.appendChild(contextElement);
+
+                    
+
+                    resultsDetails.appendChild(resultElement);
+
+                });
+
+                
+
+                // Hide loading, show results
+
+                document.getElementById('loading').style.display = 'none';
+
+                document.getElementById('results-section').classList.add('show');
+
+                
+
+                // Scroll to results
+
+                document.getElementById('results-section').scrollIntoView({
+
+                    behavior: 'smooth'
+
+                });
+
+            }, 1500);
+
+        });
+
+    </script>
+
+</body>
+
+</html>
